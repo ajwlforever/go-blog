@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-blog/config"
 	"go-blog/router"
 	"log"
 	"net/http"
@@ -9,6 +10,8 @@ import (
 
 func main() {
 	fmt.Printf("start web")
+	fmt.Printf("%v", config.Conf.App.Author)
+
 	// sever服务开启
 	server := http.Server{
 		Addr: "127.0.0.1:8998",

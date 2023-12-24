@@ -3,6 +3,7 @@ module go-blog
 go 1.21.4
 
 require (
+	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/PuerkitoBio/purell v1.2.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
@@ -11,6 +12,7 @@ require (
 	github.com/go-openapi/jsonreference v0.20.4 // indirect
 	github.com/go-openapi/spec v0.20.13 // indirect
 	github.com/go-openapi/swag v0.22.6 // indirect
+	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect

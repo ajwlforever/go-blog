@@ -1,0 +1,11 @@
+[app]
+    author = "虞启贤"
+# 数据库配置
+[mysql]
+    server = "127.0.0.1"
+    ports = [3306]
+    connection_max = 5000
+    username = "root"
+    password = "123456"
+
+# redis
