@@ -7,5 +7,6 @@
     connection_max = 5000
     username = "root"
     password = "123456"
+    dbname = "go_blog"
 
 # redis

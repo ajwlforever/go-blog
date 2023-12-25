@@ -1,6 +1,10 @@
 package config
 
-import "github.com/BurntSushi/toml"
+import (
+	"fmt"
+	"github.com/BurntSushi/toml"
+	"os"
+)
 
 type Config struct {
 	App app   `toml:"app"`
@@ -16,15 +20,20 @@ type mysql struct {
 	ConnMax  int    `toml:"connection_max"`
 	Username string `toml:"username"`
 	Password string `toml:"password"`
+	Dbname   string `toml:"dbname"`
 }
 
 var Conf = &Config{}
 
 // 读取配置
 func init() {
-
-	path := "config/config.toml"
-	_, err := toml.DecodeFile(path, Conf)
+	path, err := os.Getwd()
+	if err != nil {
+		fmt.Println("error getting")
+	}
+	path += "\\config\\config.toml"
+	fmt.Printf("配置文件地址是:%s\n", path)
+	_, err = toml.DecodeFile(path, Conf)
 	if err != nil {
 		panic(err)
 	}
