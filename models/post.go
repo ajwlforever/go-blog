@@ -9,7 +9,7 @@ type Post struct {
 	Id           int64     `json:"id" db:"id"`
 	Title        string    `json:"title" db:"title"`
 	Content      string    `json:"content" db:"content"`
-	Desc         string    `json:"desc" db:"desc"`
+	Intro        string    `json:"intro" db:"intro"`
 	Flags        string    `json:"flags" db:"flags"`
 	CreatedTime  time.Time `json:"created_time" db:"created_time"`
 	ModifiedTime time.Time `json:"modified_time" db:"modified_time"`
