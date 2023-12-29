@@ -31,7 +31,7 @@ func init() {
 	if err != nil {
 		fmt.Println("error getting")
 	}
-	path += "\\config\\config.toml"
+	path += "/config/config.toml"
 	fmt.Printf("配置文件地址是:%s\n", path)
 	_, err = toml.DecodeFile(path, Conf)
 	if err != nil {
