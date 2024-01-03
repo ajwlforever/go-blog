@@ -3,14 +3,19 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"go-blog/services"
 	"net/http"
 )
 
 func (api *Api) GetAllPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	indexData := IndexData{Title: "sss", Desc: "desc"}
+	service := services.New()
 
-	resStr, err := json.Marshal(indexData)
+	posts, err := service.GetAllPosts()
+	if err != nil {
+		fmt.Printf("service.GetAllPosts() Failed")
+	}
+	resStr, err := json.Marshal(posts)
 	if err != nil {
 		fmt.Printf("json.Marshal(indexData) Failed")
 	}

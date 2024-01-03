@@ -11,13 +11,20 @@ import (
 func TestPostSelect(t *testing.T) {
 	fmt.Println("sss")
 	//initMysql()
-	postDao := new(dao.PostDao)
-	post := postDao.SelectPostById(1)
+	Dao := new(dao.Dao)
+	post := Dao.SelectPostById(1)
 	fmt.Println(post.Title)
+}
+func Test1(t *testing.T) {
+	var post *models.Post
+
+	post.Id = 1
+	fmt.Printf("%v", post)
 }
 
 func TestSavePost(t *testing.T) {
-	postDao := new(dao.PostDao)
+	Dao := new(dao.Dao)
+
 	var post models.Post
 	post.Title = "123"
 	post.Id = 1233
@@ -28,14 +35,14 @@ func TestSavePost(t *testing.T) {
 	post.Level = 1
 	post.CreatedTime = time.Now()
 	post.ModifiedTime = time.Now()
-	res := postDao.SavePost(&post)
+	res := Dao.SavePost(&post)
 
 	fmt.Printf("res: %v", res)
 }
 
 func TestSelectAllPost(t *testing.T) {
-	postDao := new(dao.PostDao)
-	posts, err := postDao.SelectAllPost()
+	Dao := new(dao.Dao)
+	posts, err := Dao.SelectAllPost()
 
 	if err != nil {
 		fmt.Println("err")
@@ -45,10 +52,10 @@ func TestSelectAllPost(t *testing.T) {
 }
 
 func TestAll1(t *testing.T) {
-	postDao := new(dao.PostDao)
-	fmt.Println(postDao.GetAllPostCount())
-	postDao.FullDeleteById(123)
-	fmt.Println(postDao.GetAllPostCount())
+	Dao := new(dao.Dao)
+	fmt.Println(Dao.GetAllPostCount())
+	Dao.FullDeleteById(123)
+	fmt.Println(Dao.GetAllPostCount())
 	var post models.Post
 	post.Title = "123"
 	post.Id = 123
@@ -59,15 +66,15 @@ func TestAll1(t *testing.T) {
 	post.CreatedTime = time.Now()
 	post.ModifiedTime = time.Now()
 	post.Level = 1
-	postDao.SavePost(&post)
-	fmt.Println(postDao.GetAllPostCount())
-	postDao.DeleteById(123)
-	fmt.Printf("is_deleted:%v", postDao.SelectPostById(123))
+	Dao.SavePost(&post)
+	fmt.Println(Dao.GetAllPostCount())
+	Dao.DeleteById(123)
+	fmt.Printf("is_deleted:%v", Dao.SelectPostById(123))
 	post.Title = "llll"
 	post.Id = 12
 	post.Content = "cccc"
 	post.Intro = "aaaa"
 	post.Flags = "bbbbb"
-	postDao.UpdatePostById(&post)
+	Dao.UpdatePostById(&post)
 
 }

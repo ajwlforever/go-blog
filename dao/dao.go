@@ -6,9 +6,26 @@ import (
 	"github.com/jmoiron/sqlx"
 	"go-blog/config"
 	"strconv"
+	"sync"
 )
 
 var db *sqlx.DB
+
+type Dao struct {
+}
+
+// 全局示例化唯一的dao
+var (
+	DbDao     *Dao
+	DbDaoOnce sync.Once
+)
+
+func GetDaoInstance() *Dao {
+	DbDaoOnce.Do(func() {
+		DbDao = &Dao{}
+	})
+	return DbDao
+}
 
 // 初始化数据库
 func initMysql() (err error) {

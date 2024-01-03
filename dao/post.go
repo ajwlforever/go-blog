@@ -16,17 +16,14 @@ const (
 	_countAll      = "select count(*) from post"
 )
 
-type PostDao struct {
-}
-
-func (postDao *PostDao) GetAllPostCount() (count int64) {
+func (Dao *Dao) GetAllPostCount() (count int64) {
 	err := db.Get(&count, _countAll)
 	if err != nil {
 		fmt.Printf("getAllPostCount failed:%v", err)
 	}
 	return
 }
-func (postDao *PostDao) SelectAllPost() (posts []models.Post, err error) {
+func (Dao *Dao) SelectAllPost() (posts []models.Post, err error) {
 	posts = []models.Post{}
 	err = db.Select(&posts, _selectAll)
 	if err != nil {
@@ -37,7 +34,7 @@ func (postDao *PostDao) SelectAllPost() (posts []models.Post, err error) {
 	return
 }
 
-func (postDao *PostDao) SelectPostById(id int) (post models.Post) {
+func (Dao *Dao) SelectPostById(id int) (post models.Post) {
 
 	err := db.Get(&post, _selectById, id)
 	if err != nil {
@@ -48,7 +45,7 @@ func (postDao *PostDao) SelectPostById(id int) (post models.Post) {
 	return
 }
 
-func (postDao *PostDao) SavePost(post *models.Post) (res bool) {
+func (Dao *Dao) SavePost(post *models.Post) (res bool) {
 
 	result, err := db.Exec(_insert, post.Id, post.Title, post.Content, post.Intro, post.Flags, post.CreatorId, post.Id)
 	if err != nil {
@@ -63,7 +60,7 @@ func (postDao *PostDao) SavePost(post *models.Post) (res bool) {
 	fmt.Printf("affectRows:%v \n", affectRows)
 	return
 }
-func (postDao *PostDao) UpdatePostById(post *models.Post) (affectedRow int64) {
+func (Dao *Dao) UpdatePostById(post *models.Post) (affectedRow int64) {
 	result, err := db.Exec(_updateFour, post.Title, post.Content, post.Intro, post.Flags, post.Id)
 	if err != nil {
 		fmt.Printf("UpdatePostById failed:%v", err)
@@ -74,7 +71,7 @@ func (postDao *PostDao) UpdatePostById(post *models.Post) (affectedRow int64) {
 	}
 	return
 }
-func (postDao *PostDao) DeleteById(id int) (affectedRow int64) {
+func (Dao *Dao) DeleteById(id int) (affectedRow int64) {
 	result, err := db.Exec(_updateDeleted, 1, id) // 将is_deleted置1
 	if err != nil {
 		fmt.Printf("DeleteById failed%v", err)
@@ -86,7 +83,7 @@ func (postDao *PostDao) DeleteById(id int) (affectedRow int64) {
 	return
 
 }
-func (postDao *PostDao) FullDeleteById(id int) (affectedRow int64) {
+func (Dao *Dao) FullDeleteById(id int) (affectedRow int64) {
 	result, err := db.Exec(_deleteFull, id)
 	if err != nil {
 		fmt.Printf("DeleteById failed%v", err)
