@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"go-blog/dao"
 	"go-blog/models"
@@ -20,6 +21,24 @@ func Test1(t *testing.T) {
 
 	post.Id = 1
 	fmt.Printf("%v", post)
+}
+
+func TestPostJson(t *testing.T) {
+	var post models.Post
+	post.Title = "123"
+	post.Id = 1233
+	post.Content = "CCCCCC"
+	post.Intro = "1111"
+	post.Flags = "falgs"
+	post.CreatorId = 1
+	post.Level = 1
+	post.CreatedTime = time.Now()
+	post.ModifiedTime = time.Now()
+
+	jsonString, err := json.Marshal(post)
+	if err != nil {
+	}
+	fmt.Println(string(jsonString))
 }
 
 func TestSavePost(t *testing.T) {
